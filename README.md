@@ -1,9 +1,9 @@
-# Sales Report Pro â€” PrestaShop Module
+﻿# Sales Report Pro — PrestaShop Module
 
 **Module name:** `emsalesreport`  
 **Version:** 1.0.0  
 **Author:** EM Modules  
-**Compatibility:** PrestaShop 8.0 â€“ 9.x  
+**Compatibility:** PrestaShop 8.0 — 9.x  
 **Minimum PHP:** 8.1  
 **License:** Commercial
 
@@ -11,7 +11,7 @@
 
 ## Overview
 
-Sales Report Pro is an advanced sales analytics dashboard for PrestaShop 8 and 9. It provides store owners with real-time KPIs, interactive charts, and detailed reports broken down by product, category, customer, and supplier â€” all accessible directly from the Back Office without any external services or third-party dependencies.
+Sales Report Pro is an advanced sales analytics dashboard for PrestaShop 8 and 9. It provides store owners with real-time KPIs, interactive charts, and detailed reports broken down by product, category, customer, and supplier — all accessible directly from the Back Office without any external services or third-party dependencies.
 
 ---
 
@@ -37,7 +37,7 @@ Each card shows the current period value alongside a **variance indicator** (% c
 - Line chart or bar chart (toggleable via UI buttons)
 - Three selectable metrics: **Revenue**, **Orders**, **Average Ticket**
 - Three time granularities: **Daily**, **Weekly** (aligned to Monday), **Monthly**
-- Rendered client-side with **Chart.js 4.4.7** (bundled â€” no CDN required)
+- Rendered client-side with **Chart.js 4.4.7** (bundled — no CDN required)
 
 ### Data Tables (tabbed)
 
@@ -66,7 +66,7 @@ Four tabs, each with server-side pagination, sortable columns, and download:
 - European decimal format (comma separator) applied automatically
 
 ### Configuration Page
-- **Visual order state selector**: checkbox grid showing each order state with its color badge and a "Paid" indicator â€” no need to manually type state IDs
+- **Visual order state selector**: checkbox grid showing each order state with its color badge and a "Paid" indicator — no need to manually type state IDs
 - Toggle tax-inclusive / tax-exclusive totals
 - Set default date range (in days)
 - Set items per page (pagination)
@@ -80,46 +80,46 @@ Four tabs, each with server-side pagination, sortable columns, and download:
 
 ```
 emsalesreport/
-â”œâ”€â”€ emsalesreport.php                         # Module main class
-â”œâ”€â”€ controllers/admin/
-â”‚   â””â”€â”€ AdminEmSalesReportController.php      # AJAX + page controller
-â”œâ”€â”€ classes/
-â”‚   â”œâ”€â”€ EmSalesReportQuery.php                # All SQL queries
-â”‚   â”œâ”€â”€ EmSalesReportKPI.php                  # KPI calculation helpers
-â”‚   â””â”€â”€ EmSalesReportExport.php               # CSV export
-â”œâ”€â”€ views/
-â”‚   â”œâ”€â”€ templates/admin/
-â”‚   â”‚   â”œâ”€â”€ dashboard.tpl                     # Main dashboard layout
-â”‚   â”‚   â””â”€â”€ partials/
-â”‚   â”‚       â”œâ”€â”€ kpi_cards.tpl
-â”‚   â”‚       â”œâ”€â”€ chart_area.tpl
-â”‚   â”‚       â”œâ”€â”€ filters_bar.tpl
-â”‚   â”‚       â”œâ”€â”€ tab_products.tpl
-â”‚   â”‚       â”œâ”€â”€ tab_categories.tpl
-â”‚   â”‚       â”œâ”€â”€ tab_customers.tpl
-â”‚   â”‚       â””â”€â”€ tab_suppliers.tpl
-â”‚   â”œâ”€â”€ css/admin/dashboard.css
-â”‚   â””â”€â”€ js/admin/
-â”‚       â”œâ”€â”€ chart.min.js                      # Chart.js 4.4.7 (bundled)
-â”‚       â”œâ”€â”€ dashboard.js                      # All dashboard interactivity
-â”‚       â”œâ”€â”€ export.js                         # Export trigger logic
-â”‚       â””â”€â”€ config.js                         # Config page checkbox toggle
-â”œâ”€â”€ translations/
-â”‚   â”œâ”€â”€ es.php
-â”‚   â”œâ”€â”€ en.php
-â”‚   â””â”€â”€ fr.php
-â””â”€â”€ sql/                                      # Install/uninstall SQL (if any)
+├── emsalesreport.php                         # Module main class
+├── controllers/admin/
+│   └── AdminEmSalesReportController.php      # AJAX + page controller
+├── classes/
+│   ├── EmSalesReportQuery.php                # All SQL queries
+│   ├── EmSalesReportKPI.php                  # KPI calculation helpers
+│   └── EmSalesReportExport.php               # CSV export
+├── views/
+│   ├── templates/admin/
+│   │   ├── dashboard.tpl                     # Main dashboard layout
+│   │   └── partials/
+│   │       ├── kpi_cards.tpl
+│   │       ├── chart_area.tpl
+│   │       ├── filters_bar.tpl
+│   │       ├── tab_products.tpl
+│   │       ├── tab_categories.tpl
+│   │       ├── tab_customers.tpl
+│   │       └── tab_suppliers.tpl
+│   ├── css/admin/dashboard.css
+│   └── js/admin/
+│       ├── chart.min.js                      # Chart.js 4.4.7 (bundled)
+│       ├── dashboard.js                      # All dashboard interactivity
+│       ├── export.js                         # Export trigger logic
+│       └── config.js                         # Config page checkbox toggle
+├── translations/
+│   ├── es.php
+│   ├── en.php
+│   └── fr.php
+└── sql/                                      # Install/uninstall SQL (if any)
 ```
 
 ### JavaScript
-- **Vanilla JS only** â€” no jQuery dependency (PS9-forward compatible)
+- **Vanilla JS only** — no jQuery dependency (PS9-forward compatible)
 - `fetch()` API for all AJAX calls
 - Chart.js loaded from the module bundle (no external CDN)
-- Content Security Policy (CSP) compliant â€” no inline `<script>` blocks
+- Content Security Policy (CSP) compliant — no inline `<script>` blocks
 
 ### SQL & Database
 - All queries built with `Db::getInstance()` and `pSQL()` / `intval()` sanitisation
-- No custom tables required â€” reads from core PS tables only:
+- No custom tables required — reads from core PS tables only:
   - `ps_orders`, `ps_order_detail`, `ps_order_state`
   - `ps_product_lang`, `ps_category_lang`
   - `ps_customer`, `ps_supplier`, `ps_manufacturer`
@@ -151,7 +151,7 @@ emsalesreport/
 
 1. Download or clone the `emsalesreport` folder.
 2. Compress it into `emsalesreport.zip` (the folder must be at the root of the ZIP).
-3. In PrestaShop Back Office go to **Modules â†’ Module Manager â†’ Upload a module**.
+3. In PrestaShop Back Office go to **Modules → Module Manager → Upload a module**.
 4. Upload the ZIP and click **Install**.
 5. The module adds a **Sales Report Pro** entry under the **Stats** section of the left navigation.
 
@@ -175,9 +175,9 @@ Translations included out of the box:
 
 | Locale | Status |
 |---|---|
-| Spanish (`es`) | âœ… Complete |
-| English (`en`) | âœ… Complete |
-| French (`fr`) | âœ… Complete |
+| Spanish (`es`) | ✅ Complete |
+| English (`en`) | ✅ Complete |
+| French (`fr`) | ✅ Complete |
 
 Additional locales can be added under `translations/` following the standard PrestaShop translation file format.
 
