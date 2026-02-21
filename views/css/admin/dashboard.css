@@ -1,0 +1,366 @@
+/**
+ * Sales Report Pro — Dashboard Styles
+ * Rules: no !important, all selectors prefixed .emsales- or #emsales-
+ * Colors: #4e73df (blue) #1cc88a (green) #e74a3b (red) #f6c23e (yellow) #858796 (gray)
+ */
+
+/* ─── CSS Variables ─────────────────────────────────────────────────────────── */
+:root {
+  --emsales-blue:    #4e73df;
+  --emsales-green:   #1cc88a;
+  --emsales-red:     #e74a3b;
+  --emsales-yellow:  #f6c23e;
+  --emsales-gray:    #858796;
+  --emsales-dark:    #2e2e2e;
+  --emsales-light:   #f8f9fc;
+  --emsales-border:  #e3e6f0;
+  --emsales-shadow:  0 0.15rem 1.75rem 0 rgba(58,59,69,.15);
+}
+
+/* ─── Layout / wrapper ───────────────────────────────────────────────────────── */
+#emsales-dashboard-wrapper {
+  padding: 0 5px;
+}
+
+/* ─── Filters bar ─────────────────────────────────────────────────────────── */
+#emsales-filters {
+  background: #fff;
+  border: 1px solid var(--emsales-border);
+  border-radius: 4px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  box-shadow: var(--emsales-shadow);
+}
+
+#emsales-filters label {
+  font-size: .8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--emsales-gray);
+  margin-bottom: 4px;
+  display: block;
+}
+
+#emsales-filters input[type="date"],
+#emsales-filters input[type="text"] {
+  border-radius: 4px;
+  border: 1px solid var(--emsales-border);
+  padding: 5px 8px;
+  font-size: .875rem;
+}
+
+#emsales-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+#emsales-presets .emsales-preset {
+  padding: 4px 10px;
+  font-size: .8rem;
+  border-radius: 20px;
+  border: 1px solid var(--emsales-border);
+  background: #fff;
+  color: var(--emsales-dark);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+
+#emsales-presets .emsales-preset:hover,
+#emsales-presets .emsales-preset.active {
+  background: var(--emsales-blue);
+  color: #fff;
+  border-color: var(--emsales-blue);
+}
+
+/* ─── KPI Cards ─────────────────────────────────────────────────────────────── */
+.emsales-kpi-row {
+  margin-bottom: 20px;
+}
+
+.emsales-kpi-card {
+  background: #fff;
+  border-left: 4px solid var(--emsales-blue);
+  border-radius: 4px;
+  padding: 16px 20px;
+  box-shadow: var(--emsales-shadow);
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+
+.emsales-kpi-card.kpi-up    { border-left-color: var(--emsales-green); }
+.emsales-kpi-card.kpi-down  { border-left-color: var(--emsales-red); }
+.emsales-kpi-card.kpi-neutral { border-left-color: var(--emsales-blue); }
+
+.emsales-kpi-card .kpi-label {
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--emsales-blue);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.emsales-kpi-card.kpi-up    .kpi-label { color: var(--emsales-green); }
+.emsales-kpi-card.kpi-down  .kpi-label { color: var(--emsales-red); }
+.emsales-kpi-card.kpi-neutral .kpi-label { color: var(--emsales-blue); }
+
+.emsales-kpi-card .kpi-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--emsales-dark);
+  line-height: 1.2;
+  display: block;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.emsales-kpi-card .kpi-variation {
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+.kpi-variation.kpi-up     { color: var(--emsales-green); }
+.kpi-variation.kpi-down   { color: var(--emsales-red); }
+.kpi-variation.kpi-neutral { color: var(--emsales-gray); }
+
+.emsales-kpi-card .kpi-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.4rem;
+  color: #dddfeb;
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* Secondary KPI row — slightly smaller */
+.emsales-kpi-sm .kpi-value {
+  font-size: 1.35rem;
+}
+
+.emsales-kpi-sm .kpi-icon {
+  font-size: 1.8rem;
+}
+
+/* ─── Loading spinner ─────────────────────────────────────────────────────── */
+.emsales-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, .72);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#emsales-chart-loading {
+  text-align: center;
+  padding: 40px 0;
+  color: var(--emsales-gray);
+  font-size: 1.5rem;
+}
+
+/* ─── Chart panel ─────────────────────────────────────────────────────────── */
+#emsales-chart-panel {
+  box-shadow: var(--emsales-shadow);
+}
+
+#emsales-chart-panel .panel-body {
+  padding: 15px;
+  min-height: 300px;
+  position: relative;
+}
+
+#emsales-main-chart {
+  max-height: 320px;
+  display: block;
+  width: 100%;
+}
+
+.emsales-chart-controls {
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.emsales-chart-metric,
+.emsales-chart-type,
+.emsales-gran {
+  padding: 4px 10px;
+  font-size: .8rem;
+  border-radius: 4px;
+  border: 1px solid var(--emsales-border);
+  background: #fff;
+  color: var(--emsales-dark);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+
+.emsales-chart-metric:hover,
+.emsales-chart-metric.active,
+.emsales-chart-type:hover,
+.emsales-chart-type.active,
+.emsales-gran:hover,
+.emsales-gran.active {
+  background: var(--emsales-blue);
+  color: #fff;
+  border-color: var(--emsales-blue);
+}
+
+/* ─── Data tabs ─────────────────────────────────────────────────────────────── */
+#emsales-tabs-nav {
+  border-bottom: 2px solid var(--emsales-border);
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  list-style: none;
+}
+
+.emsales-tab-btn {
+  padding: 10px 18px;
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--emsales-gray);
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color .15s, border-color .15s;
+  margin-bottom: -2px;
+}
+
+.emsales-tab-btn:hover {
+  color: var(--emsales-dark);
+}
+
+.emsales-tab-btn.active {
+  color: var(--emsales-blue);
+  border-bottom-color: var(--emsales-blue);
+}
+
+.emsales-tab-pane {
+  padding: 0;
+}
+
+/* ─── Tables ─────────────────────────────────────────────────────────────────── */
+.emsales-data-table thead th {
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--emsales-gray);
+  background: var(--emsales-light);
+  border-bottom: 2px solid var(--emsales-border);
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 10px 12px;
+}
+
+.emsales-data-table tbody td {
+  vertical-align: middle;
+  padding: 9px 12px;
+  font-size: .875rem;
+}
+
+.emsales-data-table tbody td.text-right {
+  font-variant-numeric: tabular-nums;
+}
+
+.emsales-sortable {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.emsales-sortable:hover {
+  background: #eaecf4;
+  color: var(--emsales-dark);
+}
+
+.emsales-sortable.sort-asc::after  { content: ' \2191'; color: var(--emsales-blue); }
+.emsales-sortable.sort-desc::after { content: ' \2193'; color: var(--emsales-blue); }
+
+/* ─── Badges ─────────────────────────────────────────────────────────────────── */
+.badge-success { background: var(--emsales-green);  color: #fff; }
+.badge-warning { background: var(--emsales-yellow); color: #333; }
+.badge-danger  { background: var(--emsales-red);    color: #fff; }
+
+/* ─── Tab toolbar (filter row in each tab) ───────────────────────────────────── */
+.emsales-tab-toolbar {
+  background: var(--emsales-light);
+  border-radius: 4px;
+  padding: 8px 10px;
+}
+
+/* ─── Panel adjustments ──────────────────────────────────────────────────────── */
+.emsales-panel-sm .panel-heading {
+  padding: 8px 14px;
+  font-size: .85rem;
+}
+
+.emsales-panel-sm .panel-body {
+  padding: 10px;
+}
+
+/* ─── Pagination ──────────────────────────────────────────────────────────────── */
+#emsales-products-pagination .pagination,
+#emsales-customers-pagination .pagination {
+  margin: 8px 0 4px;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 992px) {
+  .emsales-kpi-card .kpi-value { font-size: 1.5rem; }
+  .emsales-kpi-sm   .kpi-value { font-size: 1.15rem; }
+  .emsales-kpi-card .kpi-icon  { font-size: 1.8rem; }
+}
+
+@media (max-width: 768px) {
+  .emsales-kpi-card {
+    margin-bottom: 10px;
+    padding: 12px 14px;
+  }
+
+  .emsales-kpi-card .kpi-value {
+    font-size: 1.3rem;
+  }
+
+  .emsales-kpi-card .kpi-icon {
+    display: none;
+  }
+
+  #emsales-presets .emsales-preset {
+    padding: 3px 8px;
+    font-size: .75rem;
+  }
+
+  .emsales-tab-btn {
+    padding: 8px 12px;
+    font-size: .8rem;
+  }
+
+  .emsales-chart-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .emsales-data-table thead th,
+  .emsales-data-table tbody td {
+    padding: 6px 8px;
+    font-size: .8rem;
+  }
+}
+
